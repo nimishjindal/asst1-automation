@@ -1,16 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'M3'
-    }
-
     stages {
-        stage('Deploy') {
+        stage('Build') {
             steps {
-                script {
-                    echo 'hi'
-                }
+                echo 'Building..'
             }
         }
     }
