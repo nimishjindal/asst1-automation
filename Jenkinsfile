@@ -35,10 +35,10 @@ pipeline {
 
         stage('SonarQube Analysis') {
             environment {
-                scannerHome = tool 'sonar-asst'
+                scannerHome = tool 'sonarqube'
             }
             steps {
-                withSonarQubeEnv('sonar-local-container') {
+                withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=assignment -Dsonar.exclusions=**/*.java -Dcheckstyle.skip=true"
                 }
             }
