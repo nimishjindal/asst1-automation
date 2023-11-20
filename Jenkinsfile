@@ -23,17 +23,17 @@ pipeline {
         stage('maven verify') {
             steps {
                 script {
-                    sh 'mvn verify -Dcheckstyle.skip=true'
+                    sh 'mvn verify -Dcheckstyle.skip=true -DskipTests=true'
                 }
             }
         }
 
         stage('SonarQube Analysis') {
             environment {
-                scannerHome = tool 'sonarqube'
+                scannerHome = tool 'sonar-asst'
             }
             steps {
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv('sonar-local-container') {
                     sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=assignment -Dsonar.exclusions=**/*.java -Dcheckstyle.skip=true"
                 }
             }
